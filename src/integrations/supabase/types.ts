@@ -14,7 +14,48 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      internships: {
+        Row: {
+          company: string
+          created_at: string
+          description: string
+          duration: string
+          id: string
+          location: string
+          requirements: string[]
+          sector: string
+          stipend: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          company: string
+          created_at?: string
+          description: string
+          duration: string
+          id?: string
+          location: string
+          requirements?: string[]
+          sector: string
+          stipend: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          company?: string
+          created_at?: string
+          description?: string
+          duration?: string
+          id?: string
+          location?: string
+          requirements?: string[]
+          sector?: string
+          stipend?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

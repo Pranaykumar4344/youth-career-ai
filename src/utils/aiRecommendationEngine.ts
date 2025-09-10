@@ -1,5 +1,5 @@
 import { CandidateProfile, Internship } from "@/types/internship";
-import { supabase } from "@/integrations/supabase/client";
+import { internships } from "@/data/internships";
 
 // Simple semantic similarity using keyword expansion
 const skillSynonyms: Record<string, string[]> = {
@@ -66,17 +66,8 @@ const calculateSemanticSimilarity = (userSkills: string[], requirements: string[
 
 // Enhanced weighted scoring model
 export const generateAIRecommendations = async (profile: CandidateProfile): Promise<EnhancedInternship[]> => {
-  // Fetch internships from Supabase
-  const { data: internships, error } = await supabase
-    .from('internships')
-    .select('*');
-
-  if (error) {
-    console.error('Error fetching internships:', error);
-    return [];
-  }
-
-  if (!internships) return [];
+  // Use static internship data for now
+  if (!internships || internships.length === 0) return [];
 
   const recommendedInternships = internships.map(internship => {
     const reasoning: string[] = [];
